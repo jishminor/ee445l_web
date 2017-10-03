@@ -25,13 +25,13 @@ def receiveData(request):
                 v.name = request.GET['name']
             i = 0
             if 'vals' in request.GET:
-            values_string = request.GET['vals']
-            values = values_string.split(',')
-            values_floats = []
-            for val in values:
-                values_floats.append(float(val))
-            v.data = values_floats
-            v.save()
+                values_string = request.GET['vals']
+                values = values_string.split(',')
+                values_floats = []
+                for val in values:
+                    values_floats.append(float(val))
+                v.data = values_floats
+                v.save()
         except:
             print("Received request, error in parsing")
 
