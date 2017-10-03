@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import VoltageSample
 from graphos.sources.simple import SimpleDataSource
 from graphos.renderers.gchart import LineChart
@@ -34,9 +34,11 @@ def receiveData(request):
                 v.save()
         except:
             print("Received request, error in parsing")
-
     else:
         print("Received request, but no query")
+
+    response = HttpResponse()
+    response.write("hit")
 
 def plots(request, data_id):
     vs = VoltageSample.objects.all().filter(id=data_id)[0]
