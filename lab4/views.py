@@ -69,7 +69,7 @@ def plots(request, data_id):
         for d in vs.data:
             val = [str(i), d]
             samples.append(val)
-            i = i + (1 / vs.freq)
+            i = round(i + (1 / vs.freq), 2)
             data.append(val)
     # DataSource object
     data_source = SimpleDataSource(data=data)
@@ -79,7 +79,7 @@ def plots(request, data_id):
                'hAxis': {'title': 'Seconds', 'minValue': 0, 'viewWindowMode': 'maximized'}
     }
     chart = LineChart(data_source, height=500, width=1000, options=options)
-    context = {'chart': chart}
+    context = {'chart': chart, 'points': vs.data, 'freq': vs.freq}
     return render(request, 'plot.html', context)
 
 def flex(request):

@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^receiveData/', views.receiveData, name='receiveData'),
-    url(r'^flex/', views.flex, name='flex'),
     # ex: /5/
     url(r'^(?P<data_id>[0-9]+)/$', views.plots, name='plots'),
 ]
