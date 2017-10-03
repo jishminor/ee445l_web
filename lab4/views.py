@@ -32,6 +32,7 @@ def receiveData(request):
                     values_floats.append(float(val))
                 v.data = values_floats
                 v.save()
+                print("Saved new object")
         except:
             print("Received request, error in parsing")
     else:
@@ -39,6 +40,7 @@ def receiveData(request):
 
     response = HttpResponse()
     response.write("hit")
+    return response
 
 def plots(request, data_id):
     vs = VoltageSample.objects.all().filter(id=data_id)[0]
