@@ -24,13 +24,14 @@ def receiveData(request):
             if 'name' in request.GET:
                 v.name = request.GET['name']
             i = 0
-            search = "val0"
-            values = []
-            while search in request.GET:
-                values.append(float(request.GET[search]))
-                search.replace(str(i), str(++i))
-            v.data = values
-            v.save()
+            if 'vals' in request.GET:
+                values_string = request.GET['vals']
+                values = values_string.split(',')
+                values_floats = []
+                for val in values:
+                    values_floats.append(float(val))
+                v.data = values_floats
+                v.save()
         except:
             print("Received request, error in parsing")
 
