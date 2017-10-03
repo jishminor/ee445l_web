@@ -1,3 +1,5 @@
+{% load lab4_extras %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +17,36 @@
       </button>
       <a class="navbar-brand" href="#">Recorded Voltage Plots From ADC</a>
     </nav>
-    {% if voltage_data %}
-        <ul class="list-group">
-            {% for result in voltage_data %}
-                <li class="list-group-item"><a href="/{{ result.id }}/">{{ result.name }}</a> &emsp; {{ result.pub_date }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No data yet playa!</p>
-    {% endif %}
+    <div class="container">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Samples</th>
+                    </tr>
+                </thead>
+                {% if voltage_data %}
+                    <tbody>
+                        {% for result in voltage_data %}
+                            <tr>
+                                <th scope="row">{{ result.id }}</th>
+                                <td><a href="/{{ result.id }}/">{{ result.name }}</a></td>
+                                <td>{{ result.pub_date }}</td>
+                                <td><span class="badge badge-default badge-pill">{{ result.data|length }}</span></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                {% endif %}
+            </table>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+
 </body>
 </html>
