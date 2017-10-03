@@ -1,6 +1,9 @@
 *.
 .idea/*
 !.gitignore
-
+;;extensions to ignore
+*.log
+*.pot
+*.pyc
 
 
